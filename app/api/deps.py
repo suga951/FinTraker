@@ -4,6 +4,7 @@ from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
 from sqlalchemy.orm import Session
 
+from app import crud
 from app.core.config import settings
 from app.core.security import create_access_token
 from app.db.session import SessionLocal
@@ -40,4 +41,7 @@ def get_current_user(
     except JWTError:
         raise credentials_exception
 
-    raise NotImplementedError("Not implemented yet.")
+    user = crud.user.get_by_email(db, email=token_data.email)
+    if user is None:
+        raise credentials_exception
+    return user
