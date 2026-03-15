@@ -19,7 +19,7 @@ def create(db: Session, *, email: str, password: str) -> User:
 
 def authenticate(db: Session, *, email: str, password: str) -> User | None:
     user = get_by_email(db, email=email)
-    if not User:
+    if not user:
         return None
     if not verify_password(password, user.hashed_password):
         return None
