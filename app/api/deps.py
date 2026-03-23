@@ -1,4 +1,3 @@
-from re import NOFLAG
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
@@ -7,7 +6,6 @@ from sqlalchemy.orm import Session
 from app import crud
 
 from app.core.config import settings
-from app.core.security import create_access_token
 from app.database import SessionLocal
 from app.models.user import User
 from app.schemas.user import TokenData
