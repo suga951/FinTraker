@@ -15,7 +15,7 @@ from alembic import context
 sys.path.append(os.getcwd())
 
 from app.database import Base
-from app.models.user import User  # Import models to register them
+from app.models import User, Category, Transaction  # Import models to register them
 from app.core.config import settings
 
 # this is the Alembic Config object, which provides

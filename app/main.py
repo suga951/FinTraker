@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from app.api import auth
+from app.api import auth, categories, transactions
 
 app = FastAPI(
     title="FinTrakr API",
@@ -17,3 +17,5 @@ def read_root():
 
 
 app.include_router(auth.router)
+app.include_router(categories.router)
+app.include_router(transactions.router)
