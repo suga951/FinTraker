@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.api import auth, categories, transactions
+from app.api import auth, categories, transactions, dashboard
 from app.core.config import settings
 
 app = FastAPI(
@@ -29,3 +29,4 @@ def read_root():
 app.include_router(auth.router)
 app.include_router(categories.router)
 app.include_router(transactions.router)
+app.include_router(dashboard.router)
