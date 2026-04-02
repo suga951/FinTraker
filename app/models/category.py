@@ -14,9 +14,11 @@ class Category(Base):
     __tablename__ = "categories"
 
     id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=True)  # Null for system categories
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=True)
     name = Column(String, nullable=False)
     type = Column(SQLEnum(TransactionType), nullable=False)
+    color = Column(String(7), nullable=True)
+    emoji = Column(String(10), nullable=True)
 
     user = relationship("User", back_populates="categories")
     transactions = relationship("Transaction", back_populates="category")
