@@ -9,7 +9,7 @@ def get_category(db: Session, category_id: int):
 
 def get_categories(db: Session, user_id: int, skip: int = 0, limit: int = 100):
     return db.query(Category).filter(
-        (Category.user_id == user_id) | (Category.user_id == None)
+        Category.user_id == user_id
     ).offset(skip).limit(limit).all()
 
 
