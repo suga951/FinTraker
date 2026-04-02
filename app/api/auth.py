@@ -19,6 +19,7 @@ def register(user_in: UserCreate, db: Session = Depends(get_db)):
         )
 
     user = crud.user.create(db, email=user_in.email, password=user_in.password)
+    crud.category.copy_system_categories(db, user_id=user.id)
     return user
 
 
