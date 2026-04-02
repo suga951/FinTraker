@@ -8,25 +8,23 @@ def seed_default_categories():
     try:
         # Default Categories
         default_categories = [
-            # Income
-            ("Salary", TransactionType.INCOME),
-            ("Business", TransactionType.INCOME),
-            ("Gifts", TransactionType.INCOME),
-            ("Extra Income", TransactionType.INCOME),
+            ("Salary", TransactionType.INCOME, "💰"),
+            ("Business", TransactionType.INCOME, "💼"),
+            ("Gifts", TransactionType.INCOME, "🎁"),
+            ("Extra Income", TransactionType.INCOME, "💵"),
             
-            # Expense
-            ("Food", TransactionType.EXPENSE),
-            ("Transport", TransactionType.EXPENSE),
-            ("Rent", TransactionType.EXPENSE),
-            ("Shopping", TransactionType.EXPENSE),
-            ("Utilities", TransactionType.EXPENSE),
-            ("Entertainment", TransactionType.EXPENSE),
-            ("Health", TransactionType.EXPENSE),
-            ("Insurance", TransactionType.EXPENSE),
-            ("Others", TransactionType.EXPENSE),
+            ("Food", TransactionType.EXPENSE, "🍔"),
+            ("Transport", TransactionType.EXPENSE, "🚗"),
+            ("Rent", TransactionType.EXPENSE, "🏠"),
+            ("Shopping", TransactionType.EXPENSE, "🛒"),
+            ("Utilities", TransactionType.EXPENSE, "⚡"),
+            ("Entertainment", TransactionType.EXPENSE, "🎬"),
+            ("Health", TransactionType.EXPENSE, "🏥"),
+            ("Insurance", TransactionType.EXPENSE, "🛡️"),
+            ("Others", TransactionType.EXPENSE, "📦"),
         ]
 
-        for name, type_ in default_categories:
+        for name, type_, emoji in default_categories:
             # Check if category already exists as a system category
             exists = db.query(Category).filter(
                 Category.name == name,
@@ -35,9 +33,9 @@ def seed_default_categories():
             ).first()
             
             if not exists:
-                db_category = Category(name=name, type=type_, user_id=None)
+                db_category = Category(name=name, type=type_, emoji=emoji, user_id=None)
                 db.add(db_category)
-                print(f"Adding system category: {name} ({type_})")
+                print(f"Adding system category: {name} ({type_}) {emoji}")
         
         db.commit()
     finally:

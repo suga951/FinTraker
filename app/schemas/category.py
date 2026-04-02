@@ -5,6 +5,8 @@ from app.models.category import TransactionType
 class CategoryBase(BaseModel):
     name: str = Field(..., description="Category name.")
     type: TransactionType = Field(..., description="Category type (income or expense).")
+    color: str | None = Field(None, description="Hex color code (e.g., #FF5733).")
+    emoji: str | None = Field(None, description="Emoji icon (e.g., 🛒).")
 
 
 class CategoryCreate(CategoryBase):
@@ -14,6 +16,8 @@ class CategoryCreate(CategoryBase):
 class CategoryUpdate(BaseModel):
     name: str | None = None
     type: TransactionType | None = None
+    color: str | None = None
+    emoji: str | None = None
 
 
 class Category(CategoryBase):
